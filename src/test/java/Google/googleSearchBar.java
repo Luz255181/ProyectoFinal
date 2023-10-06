@@ -53,7 +53,7 @@ public class googleSearchBar
 		List<String> automationList = google.printSuggestions();
 		
 		// Check that there is no coincidence between both lists of suggestions
-		System.out.println(google.compareSuggestion(autoList, automationList));
+		System.out.println(""+google.compareSuggestion(autoList, automationList));
 		
 		// Click on the first suggestion that has an image
 		google.clickImageSuggestion();
