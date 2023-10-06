@@ -1,4 +1,4 @@
-package Demoblaze;
+package POM_Demoblaze;
 
 import java.time.Duration;
 
@@ -78,7 +78,6 @@ public class cartPage
 			if(l[1].trim().equals(information[2].trim()))
 			{
 				amount = true;
-				System.out.println(amount);
 			}
 		}
 		if(name && card && amount)

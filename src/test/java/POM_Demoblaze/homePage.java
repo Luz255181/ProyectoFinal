@@ -1,4 +1,4 @@
-package Demoblaze;
+package POM_Demoblaze;
 
 import java.time.Duration;
 
