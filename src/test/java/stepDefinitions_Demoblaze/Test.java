@@ -19,7 +19,7 @@ public class Test
 	private productPage product;
 	private cartPage cart;
 	private String data[] = {"Luz", "Argentina", "Bahía Blanca", "1234 5678 9010 1112", "Marzo", "2028"};
-	private String information[] = {"Luz", "1234 5678 9010 1112", ""};
+	private String information[] = {data[0], "data[3]", ""};
 	
 	@Given("^I am on the web page$")
 	public void i_am_on_the_web_page()
