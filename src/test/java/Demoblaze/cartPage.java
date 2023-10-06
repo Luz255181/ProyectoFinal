@@ -56,7 +56,6 @@ public class cartPage
 		String datos[] = driver.findElement(By.cssSelector("[class=\"lead text-muted \"]")).getText().split("\n");
 		for (String line : datos)
 		{
-			
 		}
 	}
 }
