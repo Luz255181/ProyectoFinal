@@ -19,9 +19,10 @@ public class cartPage
 		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 	}
 	
-	public void waitListProductVisible()
+	public String waitListProductVisible()
 	{
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("[class=\"success\"]")));
+		return driver.findElement(By.id("totalp")).getText();
 	}
 	
 	public void clickPlaceOrder()
@@ -53,9 +54,35 @@ public class cartPage
 	public void waitComfirmationmessage()
 	{
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("[class=\"lead text-muted \"]")));
-		String datos[] = driver.findElement(By.cssSelector("[class=\"lead text-muted \"]")).getText().split("\n");
-		for (String line : datos)
+	}
+	
+	public boolean checkConfimationInformation(String[] information)
+	{
+		boolean correct = false;
+		boolean name = false;
+		boolean card = false;
+		boolean amount = false;
+		String[] l;
+		String data[] = driver.findElement(By.cssSelector("[class=\"lead text-muted \"]")).getText().split("\n");
+		for (String line : data)
 		{
+			l = line.split(": ");
+			if(l[1].trim().equals(information[0].trim()))
+			{
+				name = true;
+			}
+			if(l[1].trim().equals(information[1].trim()))
+			{
+				card = true;
+			}
+			if(l[1].trim().equals(information[2].trim()))
+			{
+				amount = true;
+				System.out.println(amount);
+			}
 		}
+		if(name && card && amount)
+			correct = true;
+		return correct;
 	}
 }

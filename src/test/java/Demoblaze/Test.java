@@ -11,10 +11,12 @@ import io.cucumber.java.en.And;
 
 public class Test
 {
-	WebDriver driver;
-	homePage home;
-	productPage product;
-	cartPage cart;
+	private WebDriver driver;
+	private homePage home;
+	private productPage product;
+	private cartPage cart;
+	private String data[] = {"Luz", "Argentina", "Bahía Blanca", "1234 5678 9010 1112", "Marzo", "2028"};
+	private String information[] = {"Luz", "1234 5678 9010 1112", ""};
 	
 	@Given("^I am on the web page$")
 	public void i_am_on_the_web_page()
@@ -33,9 +35,11 @@ public class Test
 	{
 		String macbook = "MacBook Pro";
 		String samsung = "Samsung galaxy s7";
+		
 		WebElement narvbarx = driver.findElement(By.id("narvbarx"));
 		home.waitHomeBannerVisible(narvbarx);
 		home.checkHomeBannerVisible(narvbarx);
+		
 		WebElement laptops = driver.findElement(By.cssSelector("[onclick=\"byCat('notebook')\"]"));
 	    home.waitSectionClickeableAndClick(laptops);
 	    home.waitProductVisible(macbook);
@@ -45,6 +49,7 @@ public class Test
 	    product.clickAddToCart(cartButtonMac);
 	    product.aceptButton();
 	    product.backHomePage();
+	    
 	    narvbarx = driver.findElement(By.id("narvbarx"));
 	    home.waitHomeBannerVisible(narvbarx);
 		home.checkHomeBannerVisible(narvbarx);
@@ -62,7 +67,7 @@ public class Test
 	@And("^I click \"Place Order\" button$")
 	public void i_click_Place_Order_button()
 	{
-		cart.waitListProductVisible();
+		information[2] = cart.waitListProductVisible()+" USD";
 		cart.clickPlaceOrder();
 		cart.waitFormVisible();
 	}
@@ -70,7 +75,6 @@ public class Test
 	@And("^I complete de form$")
 	public void i_complete_de_form()
 	{
-		String data[] = {"Luz", "Argentina", "Bahía Blanca", "1234 5678 9010 1112", "Marzo", "2028"};
 		cart.completeForm(data);
 		cart.clickPurchase();
 	}
@@ -84,6 +88,6 @@ public class Test
 	@And("^The information in the confirmation message is correct$")
 	public void the_information_in_the_confirmation_message_is_correct()
 	{
-		
+		System.out.println(cart.checkConfimationInformation(information));
 	}
 }
